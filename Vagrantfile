@@ -139,6 +139,9 @@ Vagrant.configure(2) do |config|
   # Install Nodejs
   config.vm.provision "shell", path: "#{github_url}/scripts/nodejs.sh", privileged: false, args: nodejs_packages.unshift(nodejs_version, github_url)
 
+  # Provision Composer
+  config.vm.provision "shell", path: "#{github_url}/scripts/composer.sh", privileged: false, args: [github_pat, composer_packages.join(" ")]
+
   # Install Mailcatcher
   config.vm.provision "shell", path: "#{github_url}/scripts/mailcatcher.sh"
 end
